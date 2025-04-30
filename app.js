@@ -10,7 +10,18 @@ const prisma = new PrismaClient();
 app.use(cors());
 app.use(express.json());
 
-app.get('/transactions/:date', async (req, res) => {
+app.get('/transactions', async (req, res) => {
+    try {
+        const transactions = await prisma.transaction.findMany({
+            orderBy: { date: 'asc' }
+        });
+        res.json(transactions);
+    } catch (error) {
+        res.status(500).json({ error: 'Failed to fetch all transactions' });
+    }
+});
+
+app.get('/transaction/:date', async (req, res) => {
     const date = req.params.date;
     try {
         const transactions = await prisma.transaction.findMany({
