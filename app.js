@@ -1,7 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
-import { PrismaClient } from '@prisma/client/edge'
+import { PrismaClient } from '/generated/prisma/edge'
 import { withAccelerate } from '@prisma/extension-accelerate'
 
 

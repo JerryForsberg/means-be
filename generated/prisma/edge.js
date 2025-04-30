@@ -174,7 +174,7 @@ const config = {
   },
   "inlineSchema": "// This is your Prisma schema file,\n// learn more about it in the docs: https://pris.ly/d/prisma-schema\n\n// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?\n// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init\n\ngenerator client {\n  provider = \"prisma-client-js\"\n  output   = \"../generated/prisma\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n  url      = env(\"DATABASE_URL\")\n}\n\nmodel Transaction {\n  id            Int      @id @default(autoincrement())\n  date          DateTime\n  description   String\n  type          String // 'income' or 'expense'\n  amount        Float\n  isRecurring   Boolean\n  intervalValue Int?\n  intervalType  String? // 'daily', 'weekly', 'monthly'\n  createdAt     DateTime @default(now())\n  updatedAt     DateTime @updatedAt\n}\n",
   "inlineSchemaHash": "9a6c39205a86944a789d2a9540fda5deb0e471385859665f45017918f6806bc3",
-  "copyEngine": false
+  "copyEngine": true
 }
 config.dirname = '/'
 
