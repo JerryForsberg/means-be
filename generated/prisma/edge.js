@@ -153,7 +153,7 @@ const config = {
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
-    "rootEnvPath": "../../.env",
+    "rootEnvPath": null,
     "schemaEnvPath": "../../.env"
   },
   "relativePath": "../../prisma",
@@ -163,17 +163,18 @@ const config = {
     "db"
   ],
   "activeProvider": "postgresql",
+  "postinstall": false,
   "inlineDatasources": {
     "db": {
       "url": {
         "fromEnvVar": "DATABASE_URL",
-        "value": "prisma+postgres://accelerate.prisma-data.net/?api_key=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcGlfa2V5IjoiODYwMzUwODktMDJlZC00NDk1LTkxNjgtOTA5YjBmNGIxYzAxIiwidGVuYW50X2lkIjoiNDM3ZWZhM2FhY2U4YmQwMTM3ZjI0YTY0OTdkNzE4M2Q2OGQxMGIwYzY0YTVjMDRiYzBlZjcwMDQzNDRkNmI2MSIsImludGVybmFsX3NlY3JldCI6IjRlMTVmYzNkLTA2N2MtNGI4Mi05Y2U1LTM2ODU0YWE1MmExNyJ9.DYRiDEYpy3GZYIoPrKi3ahSDLaNXRfCfq2db357CLNI"
+        "value": null
       }
     }
   },
   "inlineSchema": "// This is your Prisma schema file,\n// learn more about it in the docs: https://pris.ly/d/prisma-schema\n\n// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?\n// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init\n\ngenerator client {\n  provider = \"prisma-client-js\"\n  output   = \"../generated/prisma\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n  url      = env(\"DATABASE_URL\")\n}\n\nmodel Transaction {\n  id            Int      @id @default(autoincrement())\n  date          DateTime\n  description   String\n  type          String // 'income' or 'expense'\n  amount        Float\n  isRecurring   Boolean\n  intervalValue Int?\n  intervalType  String? // 'daily', 'weekly', 'monthly'\n  createdAt     DateTime @default(now())\n  updatedAt     DateTime @updatedAt\n}\n",
   "inlineSchemaHash": "9a6c39205a86944a789d2a9540fda5deb0e471385859665f45017918f6806bc3",
-  "copyEngine": false
+  "copyEngine": true
 }
 config.dirname = '/'
 
