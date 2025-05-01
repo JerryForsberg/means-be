@@ -3,6 +3,7 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import { PrismaClient } from './generated/prisma/edge.js'
 import { withAccelerate } from '@prisma/extension-accelerate'
+import { checkJwt } from './auth.js';
 
 
 dotenv.config();
@@ -13,33 +14,22 @@ const prisma = new PrismaClient().$extends(withAccelerate())
 app.use(cors());
 app.use(express.json());
 
-app.get('/transactions', async (req, res) => {
+app.get('/transactions', checkJwt, async (req, res) => {
     try {
         const transactions = await prisma.transaction.findMany({
+            where: {
+                userId: req.user.sub
+            },
             orderBy: { date: 'asc' }
         });
         res.json(transactions);
     } catch (error) {
+        console.error(error);
         res.status(500).json({ error: 'Failed to fetch all transactions' });
     }
 });
 
-app.get('/transaction/:date', async (req, res) => {
-    const date = req.params.date;
-    try {
-        const transactions = await prisma.transaction.findMany({
-            where: {
-                date: new Date(date)
-            },
-            orderBy: { createdAt: 'asc' },
-        });
-        res.json(transactions);
-    } catch (error) {
-        res.status(500).json({ error: 'Failed to fetch transactions' });
-    }
-});
-
-app.post('/transactions', async (req, res) => {
+app.post('/transactions', checkJwt, async (req, res) => {
     const {
         date,
         description,
@@ -54,6 +44,7 @@ app.post('/transactions', async (req, res) => {
         const transaction = await prisma.transaction.create({
             data: {
                 date: new Date(date),
+                userId: req.user.sub,
                 description,
                 type,
                 amount,
@@ -64,12 +55,13 @@ app.post('/transactions', async (req, res) => {
         });
         res.status(201).json(transaction);
     } catch (error) {
+        console.error(error);
         res.status(500).json({ error: 'Failed to create transaction' });
     }
 });
 
 
-app.put('/transactions/:id', async (req, res) => {
+app.put('/transactions/:id', checkJwt, async (req, res) => {
     const id = parseInt(req.params.id, 10);
     const {
         date,
@@ -83,9 +75,10 @@ app.put('/transactions/:id', async (req, res) => {
 
     try {
         const transaction = await prisma.transaction.update({
-            where: { id },
+            where: { id, userId: req.user.sub },
             data: {
                 date: new Date(date),
+                userId: req.user.sub,
                 description,
                 type,
                 amount,
@@ -96,18 +89,20 @@ app.put('/transactions/:id', async (req, res) => {
         });
         res.json(transaction);
     } catch (error) {
+        console.error(error);
         res.status(500).json({ error: 'Failed to update transaction' });
     }
 });
 
-app.delete('/transactions/:id', async (req, res) => {
+app.delete('/transactions/:id', checkJwt, async (req, res) => {
     const id = parseInt(req.params.id, 10);
     try {
         await prisma.transaction.delete({
-            where: { id }
+            where: { id, userId: req.user.sub },
         });
         res.status(204).end();
     } catch (error) {
+        console.error(error);
         res.status(500).json({ error: 'Failed to delete transaction' });
     }
 });
