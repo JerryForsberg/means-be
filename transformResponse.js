@@ -11,6 +11,8 @@ export const transactionResponse = (transaction) => {
         type,
         amount,
         isRecurring,
+        createdAt,
+        updatedAt
     } = transaction
 
     return {
