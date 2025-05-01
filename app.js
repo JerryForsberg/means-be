@@ -3,7 +3,8 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import { PrismaClient } from './generated/prisma/edge.js'
 import { withAccelerate } from '@prisma/extension-accelerate'
-import { checkJwt } from './auth.js';
+import checkJwt from './auth.js';
+
 
 
 dotenv.config();
