@@ -21,7 +21,7 @@ app.get('/transactions', checkJwt, async (req, res) => {
             },
             orderBy: { date: 'asc' }
         });
-        res.json(transactionResponse(transactions));
+        res.json(transactions.map(transactionResponse));
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: 'Failed to fetch all transactions' });
@@ -52,7 +52,7 @@ app.post('/transactions', checkJwt, async (req, res) => {
                 intervalType,
             }
         });
-        res.status(201).json(transactionResponse(transaction));
+        res.json(transactions.map(transactionResponse));
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: 'Failed to create transaction' });
@@ -86,7 +86,7 @@ app.put('/transactions/:id', checkJwt, async (req, res) => {
                 intervalType,
             }
         });
-        res.json(transactionResponse(transaction));
+        res.json(transactions.map(transactionResponse));
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: 'Failed to update transaction' });
