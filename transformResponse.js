@@ -1,4 +1,4 @@
-const TransactionResponse = (transaction) => {
+export const transactionResponse = (transaction) => {
     const interval =
         transaction.isRecurring && transaction.intervalValue != null && transaction.intervalType
             ? { value: transaction.intervalValue, type: transaction.intervalType }
