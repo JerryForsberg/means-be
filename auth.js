@@ -1,8 +1,8 @@
-import jwt from 'express-jwt';
+import { expressjwt } from 'express-jwt';
 import jwksRsa from 'jwks-rsa';
 
 // Middleware to validate Auth0 access tokens
-const checkJwt = jwt({
+const checkJwt = expressjwt({
     secret: jwksRsa.expressJwtSecret({
         cache: true,
         rateLimit: true,
