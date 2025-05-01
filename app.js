@@ -19,7 +19,7 @@ app.get('/transactions', checkJwt, async (req, res) => {
     try {
         const transactions = await prisma.transaction.findMany({
             where: {
-                userId: req.user.sub
+                userId: req.auth.sub
             },
             orderBy: { date: 'asc' }
         });
@@ -45,7 +45,7 @@ app.post('/transactions', checkJwt, async (req, res) => {
         const transaction = await prisma.transaction.create({
             data: {
                 date: new Date(date),
-                userId: req.user.sub,
+                userId: req.auth.sub,
                 description,
                 type,
                 amount,
@@ -76,10 +76,10 @@ app.put('/transactions/:id', checkJwt, async (req, res) => {
 
     try {
         const transaction = await prisma.transaction.update({
-            where: { id, userId: req.user.sub },
+            where: { id, userId: req.auth.sub },
             data: {
                 date: new Date(date),
-                userId: req.user.sub,
+                userId: req.auth.sub,
                 description,
                 type,
                 amount,
@@ -99,7 +99,7 @@ app.delete('/transactions/:id', checkJwt, async (req, res) => {
     const id = parseInt(req.params.id, 10);
     try {
         await prisma.transaction.delete({
-            where: { id, userId: req.user.sub },
+            where: { id, userId: req.auth.sub },
         });
         res.status(204).end();
     } catch (error) {
