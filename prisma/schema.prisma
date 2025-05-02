@@ -24,6 +24,7 @@ model Transaction {
   isRecurring   Boolean
   intervalValue Int?
   intervalType  String?
+  recurrenceEndDate DateTime?
   createdAt     DateTime @default(now())
   updatedAt     DateTime @updatedAt
 }

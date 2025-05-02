@@ -35,7 +35,8 @@ app.post('/transactions', checkJwt, async (req, res) => {
         amount,
         isRecurring,
         intervalValue,
-        intervalType
+        intervalType,
+        recurrenceEndDate
     } = req.body;
 
     try {
@@ -49,6 +50,7 @@ app.post('/transactions', checkJwt, async (req, res) => {
                 isRecurring,
                 intervalValue,
                 intervalType,
+                recurrenceEndDate: recurrenceEndDate ? new Date(recurrenceEndDate) : null
             }
         });
         res.json(transaction);
@@ -68,7 +70,8 @@ app.put('/transactions/:id', checkJwt, async (req, res) => {
         amount,
         isRecurring,
         intervalValue,
-        intervalType
+        intervalType,
+        recurrenceEndDate
     } = req.body;
 
     try {
@@ -83,6 +86,7 @@ app.put('/transactions/:id', checkJwt, async (req, res) => {
                 isRecurring,
                 intervalValue,
                 intervalType,
+                recurrenceEndDate: recurrenceEndDate ? new Date(recurrenceEndDate) : null
             }
         });
         res.json(transaction);

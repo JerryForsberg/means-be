@@ -15,15 +15,16 @@ datasource db {
 }
 
 model Transaction {
-  id            Int      @id @default(autoincrement())
-  userId        String
-  date          DateTime
-  description   String
-  type          String
-  amount        Float
-  isRecurring   Boolean
-  intervalValue Int?
-  intervalType  String?
-  createdAt     DateTime @default(now())
-  updatedAt     DateTime @updatedAt
+  id                Int       @id @default(autoincrement())
+  userId            String
+  date              DateTime
+  description       String
+  type              String
+  amount            Float
+  isRecurring       Boolean
+  intervalValue     Int?
+  intervalType      String?
+  recurrenceEndDate DateTime?
+  createdAt         DateTime  @default(now())
+  updatedAt         DateTime  @updatedAt
 }

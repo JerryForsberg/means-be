@@ -130,6 +130,7 @@ exports.Prisma.TransactionScalarFieldEnum = {
   isRecurring: 'isRecurring',
   intervalValue: 'intervalValue',
   intervalType: 'intervalType',
+  recurrenceEndDate: 'recurrenceEndDate',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };

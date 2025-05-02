@@ -903,6 +903,7 @@ export namespace Prisma {
     isRecurring: boolean | null
     intervalValue: number | null
     intervalType: string | null
+    recurrenceEndDate: Date | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -917,6 +918,7 @@ export namespace Prisma {
     isRecurring: boolean | null
     intervalValue: number | null
     intervalType: string | null
+    recurrenceEndDate: Date | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -931,6 +933,7 @@ export namespace Prisma {
     isRecurring: number
     intervalValue: number
     intervalType: number
+    recurrenceEndDate: number
     createdAt: number
     updatedAt: number
     _all: number
@@ -959,6 +962,7 @@ export namespace Prisma {
     isRecurring?: true
     intervalValue?: true
     intervalType?: true
+    recurrenceEndDate?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -973,6 +977,7 @@ export namespace Prisma {
     isRecurring?: true
     intervalValue?: true
     intervalType?: true
+    recurrenceEndDate?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -987,6 +992,7 @@ export namespace Prisma {
     isRecurring?: true
     intervalValue?: true
     intervalType?: true
+    recurrenceEndDate?: true
     createdAt?: true
     updatedAt?: true
     _all?: true
@@ -1088,6 +1094,7 @@ export namespace Prisma {
     isRecurring: boolean
     intervalValue: number | null
     intervalType: string | null
+    recurrenceEndDate: Date | null
     createdAt: Date
     updatedAt: Date
     _count: TransactionCountAggregateOutputType | null
@@ -1121,6 +1128,7 @@ export namespace Prisma {
     isRecurring?: boolean
     intervalValue?: boolean
     intervalType?: boolean
+    recurrenceEndDate?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }, ExtArgs["result"]["transaction"]>
@@ -1135,6 +1143,7 @@ export namespace Prisma {
     isRecurring?: boolean
     intervalValue?: boolean
     intervalType?: boolean
+    recurrenceEndDate?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }, ExtArgs["result"]["transaction"]>
@@ -1149,6 +1158,7 @@ export namespace Prisma {
     isRecurring?: boolean
     intervalValue?: boolean
     intervalType?: boolean
+    recurrenceEndDate?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }, ExtArgs["result"]["transaction"]>
@@ -1163,11 +1173,12 @@ export namespace Prisma {
     isRecurring?: boolean
     intervalValue?: boolean
     intervalType?: boolean
+    recurrenceEndDate?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type TransactionOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "date" | "description" | "type" | "amount" | "isRecurring" | "intervalValue" | "intervalType" | "createdAt" | "updatedAt", ExtArgs["result"]["transaction"]>
+  export type TransactionOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "date" | "description" | "type" | "amount" | "isRecurring" | "intervalValue" | "intervalType" | "recurrenceEndDate" | "createdAt" | "updatedAt", ExtArgs["result"]["transaction"]>
 
   export type $TransactionPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Transaction"
@@ -1182,6 +1193,7 @@ export namespace Prisma {
       isRecurring: boolean
       intervalValue: number | null
       intervalType: string | null
+      recurrenceEndDate: Date | null
       createdAt: Date
       updatedAt: Date
     }, ExtArgs["result"]["transaction"]>
@@ -1616,6 +1628,7 @@ export namespace Prisma {
     readonly isRecurring: FieldRef<"Transaction", 'Boolean'>
     readonly intervalValue: FieldRef<"Transaction", 'Int'>
     readonly intervalType: FieldRef<"Transaction", 'String'>
+    readonly recurrenceEndDate: FieldRef<"Transaction", 'DateTime'>
     readonly createdAt: FieldRef<"Transaction", 'DateTime'>
     readonly updatedAt: FieldRef<"Transaction", 'DateTime'>
   }
@@ -2008,6 +2021,7 @@ export namespace Prisma {
     isRecurring: 'isRecurring',
     intervalValue: 'intervalValue',
     intervalType: 'intervalType',
+    recurrenceEndDate: 'recurrenceEndDate',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
   };
@@ -2123,6 +2137,7 @@ export namespace Prisma {
     isRecurring?: BoolFilter<"Transaction"> | boolean
     intervalValue?: IntNullableFilter<"Transaction"> | number | null
     intervalType?: StringNullableFilter<"Transaction"> | string | null
+    recurrenceEndDate?: DateTimeNullableFilter<"Transaction"> | Date | string | null
     createdAt?: DateTimeFilter<"Transaction"> | Date | string
     updatedAt?: DateTimeFilter<"Transaction"> | Date | string
   }
@@ -2137,6 +2152,7 @@ export namespace Prisma {
     isRecurring?: SortOrder
     intervalValue?: SortOrderInput | SortOrder
     intervalType?: SortOrderInput | SortOrder
+    recurrenceEndDate?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -2154,6 +2170,7 @@ export namespace Prisma {
     isRecurring?: BoolFilter<"Transaction"> | boolean
     intervalValue?: IntNullableFilter<"Transaction"> | number | null
     intervalType?: StringNullableFilter<"Transaction"> | string | null
+    recurrenceEndDate?: DateTimeNullableFilter<"Transaction"> | Date | string | null
     createdAt?: DateTimeFilter<"Transaction"> | Date | string
     updatedAt?: DateTimeFilter<"Transaction"> | Date | string
   }, "id">
@@ -2168,6 +2185,7 @@ export namespace Prisma {
     isRecurring?: SortOrder
     intervalValue?: SortOrderInput | SortOrder
     intervalType?: SortOrderInput | SortOrder
+    recurrenceEndDate?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     _count?: TransactionCountOrderByAggregateInput
@@ -2190,6 +2208,7 @@ export namespace Prisma {
     isRecurring?: BoolWithAggregatesFilter<"Transaction"> | boolean
     intervalValue?: IntNullableWithAggregatesFilter<"Transaction"> | number | null
     intervalType?: StringNullableWithAggregatesFilter<"Transaction"> | string | null
+    recurrenceEndDate?: DateTimeNullableWithAggregatesFilter<"Transaction"> | Date | string | null
     createdAt?: DateTimeWithAggregatesFilter<"Transaction"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Transaction"> | Date | string
   }
@@ -2203,6 +2222,7 @@ export namespace Prisma {
     isRecurring: boolean
     intervalValue?: number | null
     intervalType?: string | null
+    recurrenceEndDate?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -2217,6 +2237,7 @@ export namespace Prisma {
     isRecurring: boolean
     intervalValue?: number | null
     intervalType?: string | null
+    recurrenceEndDate?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -2230,6 +2251,7 @@ export namespace Prisma {
     isRecurring?: BoolFieldUpdateOperationsInput | boolean
     intervalValue?: NullableIntFieldUpdateOperationsInput | number | null
     intervalType?: NullableStringFieldUpdateOperationsInput | string | null
+    recurrenceEndDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -2244,6 +2266,7 @@ export namespace Prisma {
     isRecurring?: BoolFieldUpdateOperationsInput | boolean
     intervalValue?: NullableIntFieldUpdateOperationsInput | number | null
     intervalType?: NullableStringFieldUpdateOperationsInput | string | null
+    recurrenceEndDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -2258,6 +2281,7 @@ export namespace Prisma {
     isRecurring: boolean
     intervalValue?: number | null
     intervalType?: string | null
+    recurrenceEndDate?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -2271,6 +2295,7 @@ export namespace Prisma {
     isRecurring?: BoolFieldUpdateOperationsInput | boolean
     intervalValue?: NullableIntFieldUpdateOperationsInput | number | null
     intervalType?: NullableStringFieldUpdateOperationsInput | string | null
+    recurrenceEndDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -2285,6 +2310,7 @@ export namespace Prisma {
     isRecurring?: BoolFieldUpdateOperationsInput | boolean
     intervalValue?: NullableIntFieldUpdateOperationsInput | number | null
     intervalType?: NullableStringFieldUpdateOperationsInput | string | null
+    recurrenceEndDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -2368,6 +2394,17 @@ export namespace Prisma {
     not?: NestedStringNullableFilter<$PrismaModel> | string | null
   }
 
+  export type DateTimeNullableFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
+  }
+
   export type SortOrderInput = {
     sort: SortOrder
     nulls?: NullsOrder
@@ -2383,6 +2420,7 @@ export namespace Prisma {
     isRecurring?: SortOrder
     intervalValue?: SortOrder
     intervalType?: SortOrder
+    recurrenceEndDate?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -2403,6 +2441,7 @@ export namespace Prisma {
     isRecurring?: SortOrder
     intervalValue?: SortOrder
     intervalType?: SortOrder
+    recurrenceEndDate?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -2417,6 +2456,7 @@ export namespace Prisma {
     isRecurring?: SortOrder
     intervalValue?: SortOrder
     intervalType?: SortOrder
+    recurrenceEndDate?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -2533,6 +2573,20 @@ export namespace Prisma {
     _max?: NestedStringNullableFilter<$PrismaModel>
   }
 
+  export type DateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedDateTimeNullableFilter<$PrismaModel>
+    _max?: NestedDateTimeNullableFilter<$PrismaModel>
+  }
+
   export type StringFieldUpdateOperationsInput = {
     set?: string
   }
@@ -2563,6 +2617,10 @@ export namespace Prisma {
 
   export type NullableStringFieldUpdateOperationsInput = {
     set?: string | null
+  }
+
+  export type NullableDateTimeFieldUpdateOperationsInput = {
+    set?: Date | string | null
   }
 
   export type IntFieldUpdateOperationsInput = {
@@ -2648,6 +2706,17 @@ export namespace Prisma {
     startsWith?: string | StringFieldRefInput<$PrismaModel>
     endsWith?: string | StringFieldRefInput<$PrismaModel>
     not?: NestedStringNullableFilter<$PrismaModel> | string | null
+  }
+
+  export type NestedDateTimeNullableFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
   }
 
   export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
@@ -2763,6 +2832,20 @@ export namespace Prisma {
     _count?: NestedIntNullableFilter<$PrismaModel>
     _min?: NestedStringNullableFilter<$PrismaModel>
     _max?: NestedStringNullableFilter<$PrismaModel>
+  }
+
+  export type NestedDateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedDateTimeNullableFilter<$PrismaModel>
+    _max?: NestedDateTimeNullableFilter<$PrismaModel>
   }
 
 
