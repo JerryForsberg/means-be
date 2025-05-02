@@ -4,6 +4,7 @@ import dotenv from 'dotenv';
 import { PrismaClient } from './generated/prisma/edge.js'
 import { withAccelerate } from '@prisma/extension-accelerate'
 import checkJwt from './auth.js';
+import { transactionResponse } from './transactionResponse.js';
 
 dotenv.config();
 const app = express();
@@ -20,7 +21,8 @@ app.get('/transactions', checkJwt, async (req, res) => {
             },
             orderBy: { date: 'asc' }
         });
-        res.json(transactions);
+        res.json(transactions.map(transactionResponse));
+
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: 'Failed to fetch all transactions' });
@@ -53,7 +55,7 @@ app.post('/transactions', checkJwt, async (req, res) => {
                 recurrenceEndDate: recurrenceEndDate ? new Date(recurrenceEndDate) : null
             }
         });
-        res.json(transaction);
+        res.json(transactionResponse(transaction));
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: 'Failed to create transaction' });
@@ -89,7 +91,7 @@ app.put('/transactions/:id', checkJwt, async (req, res) => {
                 recurrenceEndDate: recurrenceEndDate ? new Date(recurrenceEndDate) : null
             }
         });
-        res.json(transaction);
+        res.json(transactionResponse(transaction));
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: 'Failed to update transaction' });
