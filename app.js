@@ -21,8 +21,8 @@ app.get('/transactions', checkJwt, async (req, res) => {
             },
             orderBy: { date: 'asc' }
         });
-        console.log('Transformed transaction:', transactionResponse(transactions[0]));
-        console.log('Raw from DB:', transactions[0]);
+        console.log('Transformed transaction:', transactionResponse(transactions[2]));
+        console.log('Raw from DB:', transactions[2]);
 
         res.json(transactions.map(transactionResponse));
     } catch (error) {
